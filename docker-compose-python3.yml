@@ -13,8 +13,8 @@ kafka:
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
   environment:
-    KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
-    KAFKA_CREATE_TOPICS: "metrics:1:1,benchmark:1:1,my_topic:1:1"
+    KAFKA_ADVERTISED_HOST_NAME: 192.168.99.101
+    KAFKA_CREATE_TOPICS: "metrics:1:1"
     KAFKA_ZOOKEEPER_CONNECT: "zk"
 collectd:
   image: mre0/collectd
@@ -30,8 +30,8 @@ influxdb:
     - ./contrib/influxdb/config.toml:/config/config.toml
   ports:
    - "2003"
-   - "8083"
-   - "8086"
+   - "8083:8083"
+   - "8086:8086"
 kafkainfluxdbpy3:
   build: .
   dockerfile: Dockerfile-Python3
