@@ -30,10 +30,12 @@ def main():
         create_sample_messages(config)
     start_consumer(config)
 
+
 def show_version():
     from .version import __version__
     print("{} {}".format(__package__, __version__))
     sys.exit(0)
+
 
 def start_consumer(config):
     """
