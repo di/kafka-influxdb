@@ -40,7 +40,9 @@ class Worker(object):
             logging.info("Creating InfluxDB database if not exists: %s", self.config.influxdb_dbname)
             self.writer.create_database(self.config.influxdb_dbname)
         except Exception as e:
-            logging.info(e)
+            logging.error("InfluxDB connection error %s. Please check that InfluxDB is reachable at address %s.", e,
+                          self.writer.host)
+            raise e
 
     def flush(self):
         """ Flush values with writer """
